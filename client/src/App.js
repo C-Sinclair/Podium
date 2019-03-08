@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import logo from './assets/podium-text.svg'
-import './compiled/App.css'
+import logo from './assets/podium-text.png'
+import './compiled/styles/main.css'
 
 class App extends Component {
 
@@ -44,3 +44,5 @@ class App extends Component {
         )
     }
 }
+
+export default App
