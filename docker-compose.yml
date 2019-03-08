@@ -24,6 +24,8 @@ services:
     environment:
       - NODE_ENV=development
       - CHOKIDAR_USEPOLLING=true
+      # - SKIP_SASS_BINARY_DOWNLOAD_FOR_CI=true
+      # - SKIP_NODE_SASS_TESTS=true
     
   client:
     build:

@@ -4,6 +4,8 @@ WORKDIR /usr/app/client/
 
 COPY client/package*.json ./
 
+RUN apk --update add python
+# RUN npm config set python /usr/bin/python2.7
 RUN npm install --global node-gyp
 RUN npm install -qy
 
@@ -20,7 +22,9 @@ WORKDIR /usr/app/server/
 
 COPY server/package*.json ./
 
-RUN npm install npm@latest -g
+RUN apk --update add python
+# RUN npm config set python /usr/bin/python2.7
+RUN npm install --global node-gyp
 RUN npm install -qy
 
 COPY server/ ./
