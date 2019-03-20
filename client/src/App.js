@@ -10,6 +10,7 @@ class App extends Component {
     }
 
     componentDidMount() {
+        console.log("Mounting")
         this.callApi()
             .then(res => this.setState(res))
             .catch(console.error)

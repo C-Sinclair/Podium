@@ -2,7 +2,7 @@ FROM node as client
 
 WORKDIR /usr/app/client/
 
-COPY client/package*.json ./
+COPY client/package*.json /usr/app/client/
 
 # RUN apk --update add python
 # RUN apk add --virtual build-dependencies 
@@ -21,7 +21,7 @@ COPY --from=client /usr/app/client/build/ ./client/build/
 
 WORKDIR /usr/app/server/
 
-COPY server/package*.json ./
+COPY server/package*.json /usr/app/
 
 # RUN apk --update add python
 # RUN apk add --virtual build-dependencies 

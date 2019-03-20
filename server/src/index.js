@@ -17,6 +17,22 @@ app.get('/api', (req, res) => {
     res.send(JSON.stringify(data, null, 2))
 })
 
+app.get('/test', (req, res) => {
+    res.set('Content-Type', 'application/json')
+    let data = {
+        message: 'TEST'
+    }
+    res.send(JSON.stringify(data, null, 2))
+})
+
+app.get('/testing', (req, res) => {
+    res.set('Content-Type', 'application/json')
+    let data = {
+        message: 'TESTing'
+    }
+    res.send(JSON.stringify(data, null, 2))
+})
+
 app.get('*', (req, res) => {
     res.sendFile(path.join(CLIENT_BUILD_PATH, 'index.html'))
 })

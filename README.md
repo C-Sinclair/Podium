@@ -6,4 +6,19 @@ Podcast Network
 
 A place to build RSS feeds and host Podcast content.
 
-Implement Express, React and Node running in Docker containers.
+A built in DAW for simple sound manipulation.
+    -   Multi track 
+    -   Add, cut, paste loops 
+    -   Bounce audio
+    -   Push bounces direct to storage
+
+### Audio Workstation
+JS implementation
+Could try and use WebAssembly
+
+### Frontend
+A slick React UI
+
+### Backend
+Implement Express and Node running in Docker containers.
+Or maybe more of Symfony PHP layer?
