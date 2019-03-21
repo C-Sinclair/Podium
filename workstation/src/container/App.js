@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import Header from './structure/Header'
-import Sidebar from './structure/Sidebar'
+import Header from '../structure/Header'
+import Sidebar from '../structure/Sidebar'
+import Workstation from './Workstation.js'
 import './styles/main.css'
 
 class App extends Component {
@@ -19,7 +20,7 @@ class App extends Component {
             <div className="App">
                 <Header />
                 <Sidebar />
-                <div id="content">Content will go here!</div>
+                <Workstation />
             </div>
         )
     }

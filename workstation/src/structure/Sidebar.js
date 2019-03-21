@@ -7,6 +7,11 @@ class Sidebar extends Component {
     }
 
     render() {
+        const menuItems = [
+            { label : "Exports" },
+            { label : "Library" },
+            { label : "Resources" }
+        ]
         return (
             <nav>
                 <div>Sidebar content will go here!</div>
