@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-// import Channel from '../components/Channel'
+// import Track from '../components/Track'
 
-class Mixer extends Component {
+class Board extends Component {
 
     constructor() {
         super()
@@ -9,7 +9,7 @@ class Mixer extends Component {
     }
 
     componentDidMount() {
-        console.log("Mixer Mounting")
+        console.log("Board Mounting")
     }
 
     render() {
@@ -19,4 +19,4 @@ class Mixer extends Component {
     }
 }
 
-export default Mixer
+export default Board

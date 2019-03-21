@@ -1,15 +1,17 @@
 import React, { Component } from 'react'
+import Logo from '../assets/podium-text.png'
 
 class Header extends Component {
 
     componentDidMount() {
-        console.log("Header Mounting")
+        // console.log("Header Mounting")
     }
 
     render() {
         return (
             <header>
-                <div>Header content will go here!</div>
+                <img id="textLogo" src={Logo} />
+                <strong id="areaTitle">Workstation</strong>
             </header>
         )
     }
