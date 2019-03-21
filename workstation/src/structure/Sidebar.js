@@ -8,9 +8,9 @@ class Sidebar extends Component {
 
     render() {
         return (
-            <header>
+            <nav>
                 <div>Sidebar content will go here!</div>
-            </header>
+            </nav>
         )
     }
 
