@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Header from '../structure/Header'
 import Sidebar from '../structure/Sidebar'
 import Workstation from './Workstation.js'
-import './styles/main.css'
+import '../compiled/styles/main.css'
 
 class App extends Component {
 

@@ -1,5 +1,18 @@
 import React, { Component } from 'react'
 
+const SidebarMenu = (props) => {
+    const items = props.items.map((item, key) => (
+        <li key={key} className="menuItem">
+            <strong>{item.label}</strong>
+        </li>
+    ))
+    return (
+        <div className="menu">
+            <ul>{items}</ul>
+        </div>
+    )
+}
+
 class Sidebar extends Component {
 
     componentDidMount() {
@@ -14,7 +27,7 @@ class Sidebar extends Component {
         ]
         return (
             <nav>
-                <div>Sidebar content will go here!</div>
+                <SidebarMenu items={menuItems}/>
             </nav>
         )
     }
