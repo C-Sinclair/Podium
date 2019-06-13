@@ -1,8 +1,14 @@
 {
-  "name": "Podium",
-  "version": "1.0.0",
-  "main": "index.js",
+  "name": "podium",
+  "version": "0.0.1",
   "repository": "https://github.com/C-Sinclair/Podium.git",
   "author": "Conor <conor@wilxite.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "lerna": "^3.15.0"
+  },
+  "private": true,
+  "workspaces": [
+    ""
+  ]
 }
