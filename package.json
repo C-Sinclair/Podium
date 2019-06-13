@@ -1,0 +1,8 @@
+{
+  "name": "Podium",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/C-Sinclair/Podium.git",
+  "author": "Conor <conor@wilxite.com>",
+  "license": "MIT"
+}
