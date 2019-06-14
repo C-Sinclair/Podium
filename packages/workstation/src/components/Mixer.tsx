@@ -1,14 +1,5 @@
 import * as React from 'react'
 
-type TrackInfo = {
-  name: String
-  position: number
-}
-
-type MixerProps = {
-  tracks: [TrackInfo]
-}
-
 const compare = (a: TrackInfo, b: TrackInfo) => {
   let comp = 1
   if (a.position < b.position) comp = -1

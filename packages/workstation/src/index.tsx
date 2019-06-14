@@ -3,7 +3,12 @@ import { render } from 'react-dom'
 import App from './components/App'
 
 const props = {
-  name: 'Conor'
+  user: {
+    name: 'Conor',
+    id: 1,
+    token: 'testToken'
+  },
+  sessionId: 'ds'
 }
 
-render(<App props />, document.getElementById('root'))
+render(<App props={props} />, document.getElementById('root'))

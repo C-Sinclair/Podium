@@ -1,16 +1,30 @@
 import * as React from 'react'
+import { FunctionComponent, useState } from 'react'
+import Header from './Header'
+import Mixer from './Mixer'
+import { AppProps } from '../types/props';
 
-interface Props {
-  name: String
-  id: number
-}
+const getNewSession = () => 1
 
-const App: React.FunctionComponent<Props> = props => {
-  const { name, id } = props
+const App: FunctionComponent<AppProps> = ({ 
+  user = {
+    name: "",
+    id: 0,
+    token: ""
+  },
+  sessionId = getNewSession() 
+}) => {
+  const [ name, setName ] = useState(user.name)
+  const onNameChange = (name: string) => setName(name)
+  const headerProps = {
+    name,
+    onNameChange
+  }
+  const initialMixerProps = {}
   return (
     <main>
-      <h1>Welcome back {name}</h1>
-      <p>{id}</p>
+      <Header props={headerProps} />
+      <Mixer props={initialMixerProps}/>
     </main>
   )
 }
