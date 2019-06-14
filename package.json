@@ -1,18 +1,22 @@
 {
-  "name": "podium",
-  "version": "0.0.1",
-  "repository": "https://github.com/C-Sinclair/Podium.git",
-  "author": "Conor <conor@wilxite.com>",
-  "license": "MIT",
-  "devDependencies": {
-    "eslint": "^5.16.0",
-    "lerna": "^3.15.0",
-    "prettier": "^1.18.2",
-    "rollup": "^1.15.3",
-    "typescript": "^3.5.2"
-  },
-  "private": true,
-  "workspaces": [
-    ""
-  ]
+	"name": "podium",
+	"version": "0.0.1",
+	"repository": "https://github.com/C-Sinclair/Podium.git",
+	"author": "Conor <conor@wilxite.com>",
+	"license": "MIT",
+	"devDependencies": {
+		"eslint": "^5.16.0",
+		"lerna": "^3.15.0",
+		"prettier": "^1.18.2",
+		"rollup": "^1.15.3",
+		"typescript": "^3.5.2"
+	},
+	"private": true,
+	"workspaces": [
+		"./packages"
+	],
+	"scripts": {
+		"publish": "lerna run build && lerna publish",
+		"install": "lerna bootstrap"
+	}
 }
