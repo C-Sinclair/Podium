@@ -17,6 +17,7 @@
 	],
 	"scripts": {
 		"publish": "lerna run build && lerna publish",
-		"install": "lerna bootstrap"
+		"install": "lerna bootstrap",
+		"install:all": "./install_packages.sh"
 	}
 }

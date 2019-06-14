@@ -3,6 +3,8 @@ Podium
 
 A platform for creating podcasts
 
+[![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org/)
+
 ### Workstation
 A web app for arranging audio files ready to be published
 
