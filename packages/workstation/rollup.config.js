@@ -1,28 +1,39 @@
-import typescript from "rollup-plugin-typescript2"
+import commonjs from 'rollup-plugin-commonjs'
 import babel from 'rollup-plugin-babel'
 import htmlTemplate from "rollup-plugin-generate-html-template"
+import resolve from 'rollup-plugin-node-resolve'
 import sass from "rollup-plugin-sass"
 import postcss from "postcss"
 import autoprefixer from "autoprefixer"
 import { DEFAULT_EXTENSIONS } from '@babel/core'
 
+const extensions = [
+	...DEFAULT_EXTENSIONS,
+	'.ts',
+	'.tsx'
+]
+
 export default {
 	input: "./src/index.tsx",
 	output: {
 		file: "./dist/bundle.js",
-		format: "cjs",
+		format: "iife",
 	},
 	plugins: [
-		babel({
-			extensions: [
-				...DEFAULT_EXTENSIONS,
-				'ts',
-				'tsx'
-			]
+		resolve({ extensions }),
+		commonjs({
+			namedExports: {
+				'react': [
+					'useState'
+				],
+				'react-dom': [
+					'render'
+				]
+			}
 		}),
-		typescript({
-			clean: true,
-			objectHashIgnoreUnknownHack: true
+		babel({
+			extensions,
+			include: ['src/**/*']
 		}),
 		htmlTemplate({
 			template: "src/index.html",

@@ -1,5 +1,4 @@
-import * as React from 'react'
-import { FunctionComponent, useState } from 'react'
+import React, { FunctionComponent, useState } from 'react'
 import Header from './Header'
 import Mixer from './Mixer'
 import { AppProps } from '../types/props';
@@ -14,16 +13,16 @@ const App: FunctionComponent<AppProps> = ({
   },
   sessionId = getNewSession() 
 }) => {
+  window.history.pushState(sessionId, 's', __dirname)
   const [ name, setName ] = useState(user.name)
   const onNameChange = (name: string) => setName(name)
-  const headerProps = {
-    name,
-    onNameChange
-  }
+
   const initialMixerProps = {}
   return (
     <main>
-      <Header props={headerProps} />
+      <Header 
+        name={name} 
+        onNameChange={onNameChange}/>
       <Mixer props={initialMixerProps}/>
     </main>
   )
