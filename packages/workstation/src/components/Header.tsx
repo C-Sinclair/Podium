@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { StatelessComponent } from 'react'
-import { HeaderProps } from '../types/props';
+import { HeaderProps } from '../types/props'
 
 const Header: StatelessComponent<HeaderProps> = ({ name, onNameChange }) => {
   return (

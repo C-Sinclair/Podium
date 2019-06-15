@@ -1,7 +1,10 @@
 import React, { FunctionComponent, useState } from 'react'
 import Header from './Header'
 import Mixer from './Mixer'
-import { AppProps } from '../types/props';
+import Sidebar from './Sidebar'
+import Plugins from './Plugins'
+import Workspace from './Workspace'
+import { AppProps } from '../types/props'
 
 const getNewSession = () => 1
 
@@ -13,16 +16,21 @@ const App: FunctionComponent<AppProps> = ({
   },
   sessionId = getNewSession() 
 }) => {
+  // load from sessionId
   const [ name, setName ] = useState(user.name)
   const onNameChange = (name: string) => setName(name)
+  const [ selected, onSelect ] = useState(0)
 
-  const initialMixerProps = {}
   return (
     <main>
       <Header 
         name={name} 
         onNameChange={onNameChange}/>
-      <Mixer props={initialMixerProps}/>
+      <Sidebar 
+        onSelect={onSelect} />
+      <Plugins />
+      <Workspace />
+      <Mixer />
     </main>
   )
 }

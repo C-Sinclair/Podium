@@ -26,10 +26,12 @@ export default {
 			namedExports: {
 				'react': [
 					'useState',
-					'createElement'
+					'createElement',
+					'Children'
 				],
 				'react-dom': [
-					'render'
+					'render',
+					'findDOMNode'
 				]
 			}
 		}),

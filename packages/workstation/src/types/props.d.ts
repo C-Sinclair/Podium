@@ -9,9 +9,20 @@ type HeaderProps = {
     name: string
     onNameChange: (name: string) => void
 }
+
+type SidebarProps = {
+    selected?: number
+    onSelect: (key: number) => void
+}
+
+type PluginsProps = {}
+
+type WorkspaceProps = {}
+
+type WorkspaceState = {}
   
 type MixerProps = {
-    tracks: [TrackProps?]
+    tracks?: [TrackProps]
 }
 
 type TrackProps = {
@@ -24,4 +35,11 @@ type User = {
     name?: string
     id: number
     token: string
+}
+
+type EQ = {
+    master: number,
+    hi: number,
+    mid: number,
+    low: number
 }

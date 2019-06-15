@@ -1,14 +1,14 @@
-import * as React from 'react'
+import React from 'react'
+import { TrackProps, MixerProps } from '../types/props';
 
-const compare = (a: TrackInfo, b: TrackInfo) => {
+const compare = (a: TrackProps, b: TrackProps) => {
   let comp = 1
   if (a.position < b.position) comp = -1
   return comp
 }
 
-const Mixer: React.FunctionComponent<MixerProps> = props => {
-  const { tracks } = props
-  if (!tracks || tracks.size() == 0) 
+const Mixer: React.FunctionComponent<MixerProps> = ({ tracks }) => {
+  if (!tracks || tracks.length == 0) 
     return (
       <h4>No tracks</h4>
     )
@@ -16,7 +16,7 @@ const Mixer: React.FunctionComponent<MixerProps> = props => {
 
   return (
     <ul>
-      {tracks.map((track: TrackInfo) => (
+      {tracks.map((track: TrackProps) => (
         <li>{track.name}</li>
       ))}
     </ul>
