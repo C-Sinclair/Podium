@@ -13,7 +13,6 @@ const App: FunctionComponent<AppProps> = ({
   },
   sessionId = getNewSession() 
 }) => {
-  window.history.pushState(sessionId, 's', __dirname)
   const [ name, setName ] = useState(user.name)
   const onNameChange = (name: string) => setName(name)
 

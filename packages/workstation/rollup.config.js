@@ -3,6 +3,7 @@ import babel from 'rollup-plugin-babel'
 import htmlTemplate from "rollup-plugin-generate-html-template"
 import resolve from 'rollup-plugin-node-resolve'
 import sass from "rollup-plugin-sass"
+import replace from 'rollup-plugin-replace'
 import postcss from "postcss"
 import autoprefixer from "autoprefixer"
 import { DEFAULT_EXTENSIONS } from '@babel/core'
@@ -24,7 +25,8 @@ export default {
 		commonjs({
 			namedExports: {
 				'react': [
-					'useState'
+					'useState',
+					'createElement'
 				],
 				'react-dom': [
 					'render'
@@ -34,6 +36,9 @@ export default {
 		babel({
 			extensions,
 			include: ['src/**/*']
+		}),
+		replace({
+			'process.env.NODE_ENV': JSON.stringify('production')
 		}),
 		htmlTemplate({
 			template: "src/index.html",

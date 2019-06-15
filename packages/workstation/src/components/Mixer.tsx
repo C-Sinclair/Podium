@@ -8,6 +8,10 @@ const compare = (a: TrackInfo, b: TrackInfo) => {
 
 const Mixer: React.FunctionComponent<MixerProps> = props => {
   const { tracks } = props
+  if (!tracks || tracks.size() == 0) 
+    return (
+      <h4>No tracks</h4>
+    )
   tracks.sort(compare)
 
   return (
