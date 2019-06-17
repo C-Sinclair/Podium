@@ -1,6 +1,8 @@
 import * as React from 'react'
+import { TrackProps, MixerProps } from '../types/props'
+import { IoIosAddCircle as Plus } from 'react-icons/io'
 
-const compare = (a: TrackInfo, b: TrackInfo) => {
+const compare = (a: TrackProps, b: TrackProps) => {
   let comp = 1
   if (a.position < b.position) comp = -1
   return comp
@@ -8,18 +10,25 @@ const compare = (a: TrackInfo, b: TrackInfo) => {
 
 const Mixer: React.FunctionComponent<MixerProps> = props => {
   const { tracks } = props
-  if (!tracks || tracks.size() == 0) 
+  if (!tracks || tracks.length == 0)
     return (
-      <h4>No tracks</h4>
+      <section>
+        <h4>No tracks</h4>
+        <label htmlFor="addTrack">Add a new track</label>
+        <Plus id="addTrack" />
+      </section>
     )
+
   tracks.sort(compare)
 
   return (
-    <ul>
-      {tracks.map((track: TrackInfo) => (
-        <li>{track.name}</li>
-      ))}
-    </ul>
+    <section>
+      <ul>
+        {tracks.map((track: TrackProps) => (
+          <li className={track.current ? 'selected' : ''}>{track.name}</li>
+        ))}
+      </ul>
+    </section>
   )
 }
 

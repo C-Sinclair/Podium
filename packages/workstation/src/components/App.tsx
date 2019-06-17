@@ -1,28 +1,30 @@
 import React, { FunctionComponent, useState } from 'react'
 import Header from './Header'
 import Mixer from './Mixer'
-import { AppProps } from '../types/props';
+import { AppProps, TrackProps } from '../types/props'
 
+// from window.location.href || new unique hash
 const getNewSession = () => 1
 
-const App: FunctionComponent<AppProps> = ({ 
+const App: FunctionComponent<AppProps> = ({
   user = {
-    name: "",
+    name: '',
     id: 0,
-    token: ""
+    token: ''
   },
-  sessionId = getNewSession() 
+  sessionId = getNewSession()
 }) => {
-  const [ name, setName ] = useState(user.name)
+  const [name, setName] = useState(user.name)
   const onNameChange = (name: string) => setName(name)
 
-  const initialMixerProps = {}
+  // get data on current session from sessionId
+
+  const tracks: TrackProps[] = []
+
   return (
     <main>
-      <Header 
-        name={name} 
-        onNameChange={onNameChange}/>
-      <Mixer props={initialMixerProps}/>
+      <Header name={name} onNameChange={onNameChange} />
+      <Mixer tracks={tracks} />
     </main>
   )
 }

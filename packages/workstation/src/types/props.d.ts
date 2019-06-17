@@ -1,27 +1,33 @@
-import { ChangeEvent, Dispatch, SetStateAction } from "react"
+import { ChangeEvent, Dispatch, SetStateAction } from 'react'
 
 type AppProps = {
-    user: User
-    sessionId?: number
+  user: User
+  sessionId?: number
 }
 
 type HeaderProps = {
-    name: string
-    onNameChange: (name: string) => void
+  name: string
+  onNameChange: (name: string) => void
 }
-  
+
 type MixerProps = {
-    tracks: [TrackProps?]
+  tracks: TrackProps[]
 }
 
 type TrackProps = {
-    name: string
-    position: number
-    volume: number
+  name: string
+  position: number
+  volume: number
+  current: Boolean
 }
-  
+
+type VolumeSliderProps = {
+  volume: number
+  onChange: (volume: number) => void
+}
+
 type User = {
-    name?: string
-    id: number
-    token: string
+  name?: string
+  id: number
+  token: string
 }
