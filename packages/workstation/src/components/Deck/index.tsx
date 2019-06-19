@@ -9,7 +9,7 @@ const Deck: FunctionComponent<DeckProps> = ({ tracks, playhead, zoom, position }
   return (
     <section id="deck">
       <p>{name}</p>
-      {tracks.map(track => (
+      {tracks.map((track: TrackProps) => (
         <Track name={track.name} volume={track.position} current={track.current} />
       ))}
     </section>

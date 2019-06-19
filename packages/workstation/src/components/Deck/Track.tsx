@@ -1,8 +1,7 @@
 import React, { FunctionComponent } from 'react'
 import { TrackProps } from '../../types/props'
 
-const Track: FunctionComponent<TrackProps> = props => {
-  const { name, volume } = props
+const Track: FunctionComponent<TrackProps> = ({ name, volume }) => {
   const onVolumeChange = (v: number) => {}
   return (
     <div className="track">
