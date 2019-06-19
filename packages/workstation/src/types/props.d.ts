@@ -21,6 +21,19 @@ type TrackProps = {
   current: Boolean
 }
 
+type DeckProps = {
+  tracks: TrackProps[]
+  playhead: number
+  zoom: {
+    x: number
+    y: number
+  }
+  position: {
+    x: number
+    y: number
+  }
+}
+
 type VolumeSliderProps = {
   volume: number
   onChange: (volume: number) => void
