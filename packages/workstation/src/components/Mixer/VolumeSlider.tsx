@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react'
-import { VolumeSliderProps } from '../types/props'
+import { VolumeSliderProps } from '../../types/props'
 
 const VolumeSlider: FunctionComponent<VolumeSliderProps> = ({ volume, onChange }) => {
   return (

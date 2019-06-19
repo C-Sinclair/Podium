@@ -1,12 +1,7 @@
-import * as React from 'react'
-import { TrackProps, MixerProps } from '../types/props'
+import React from 'react'
+import { TrackProps, MixerProps } from '../../types/props'
 import { IoIosAddCircle as Plus } from 'react-icons/io'
-
-const compare = (a: TrackProps, b: TrackProps) => {
-  let comp = 1
-  if (a.position < b.position) comp = -1
-  return comp
-}
+import { compareTracks as compare } from '../../util/array'
 
 const Mixer: React.FunctionComponent<MixerProps> = props => {
   const { tracks } = props
