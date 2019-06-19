@@ -1,14 +1,18 @@
-import React, { Component } from 'react'
+import React, { FunctionComponent } from 'react'
 import { VolumeSliderProps } from '../types/props'
 
-class VolumeSlider extends Component {
-  constructor(props: VolumeSliderProps) {
-    super(props)
-  }
-
-  render() {
-    return <div className="slider" />
-  }
+const VolumeSlider: FunctionComponent<VolumeSliderProps> = ({ volume, onChange }) => {
+  return (
+    <div className="slider">
+      <input
+        type="range"
+        min="0"
+        max="100"
+        onChange={e => onChange(parseInt(e.target.value))}
+        value={volume}
+      />
+    </div>
+  )
 }
 
 export default VolumeSlider

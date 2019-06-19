@@ -1,8 +1,8 @@
-import * as React from 'react'
+import React, { FunctionComponent } from 'react'
 import VolumeSlider from './VolumeSlider'
 import { TrackProps } from '../types/props'
 
-const Track: React.FunctionComponent<TrackProps> = props => {
+const Track: FunctionComponent<TrackProps> = props => {
   const { name, volume } = props
   const onVolumeChange = (v: number) => {}
   return (
