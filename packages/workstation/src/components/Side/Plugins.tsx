@@ -1,1 +1,5 @@
-import * as React from 'react'
+import React from 'react'
+
+const Plugins = () => {}
+
+export default Plugins

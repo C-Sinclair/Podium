@@ -1,10 +1,9 @@
-import React from 'react'
+import React, { FunctionComponent } from 'react'
 import { TrackProps, MixerProps } from '../../types/props'
 import { IoIosAddCircle as Plus } from 'react-icons/io'
 import { compareTracks as compare } from '../../util/array'
 
-const Mixer: React.FunctionComponent<MixerProps> = props => {
-  const { tracks } = props
+const Mixer: FunctionComponent<MixerProps> = ({ tracks }) => {
   if (!tracks || tracks.length == 0)
     return (
       <section>
