@@ -20,17 +20,13 @@ function main() {
     })(req, res)
   })
 
-  App.listen(3000, () => {
-    console.log('Server running')
-  })
-
   Mongoose.connect(MONGO_URI, {
     useNewUrlParser: true
   })
     .then(() => {
       console.log('Connected to MongoDB')
       App.listen(PORT, () => {
-        console.log(`Listening on port ${PORT}`)
+        console.log(`Server listening on port ${PORT}`)
       })
     })
     .catch(err => console.error(err))

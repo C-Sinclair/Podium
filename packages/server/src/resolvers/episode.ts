@@ -1,24 +1,24 @@
-import { IEpisode, IPod } from '../schema/Schema'
+import { IEpisode, IPodcast } from '../schema/Schema'
 import { Episode } from '../model/Episode'
 
 interface CreateEpisodeArgs {
-  pod: IPod
+  podcast: IPodcast
   file: string
   image: string
 }
 
 interface UpdateEpisodeArgs {
   id: string
-  pod: IPod
+  podcast: IPodcast
   file: string
   image: string
 }
 
 const resolvers = {
   createEpisode: (args: CreateEpisodeArgs) => {
-    const { pod, file, image } = args
+    const { podcast, file, image } = args
     const episode = new Episode({
-      pod,
+      podcast,
       file,
       image,
       created: new Date()
@@ -33,7 +33,7 @@ const resolvers = {
   updateEpisode: (args: UpdateEpisodeArgs) => {
     Episode.findOne({ id: args.id }).then((episode: IEpisode) => {
       return episode.update({
-        pod: args.pod,
+        podcast: args.podcast,
         file: args.file,
         image: args.image,
         updated: new Date()

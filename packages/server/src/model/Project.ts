@@ -1,10 +1,12 @@
-import { Schema, Model, model } from 'mongoose'
+import { Schema, Model, model, Types } from 'mongoose'
 import { IProject } from '../schema/Schema'
-import { User } from './User'
 
 const ProjectSchema = new Schema({
   id: String,
-  user: User,
+  user: {
+    ref: 'User',
+    type: Types.ObjectId
+  },
   name: String,
   created: Date,
   updated: Date

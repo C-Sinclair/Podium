@@ -1,12 +1,12 @@
 import userResolver from './user'
 import projectResolver from './project'
-import podResolver from './pod'
+import podcastResolver from './podcast'
 import episodeResolver from './episode'
 
 const resolvers = {
   ...userResolver,
   ...projectResolver,
-  ...podResolver,
+  ...podcastResolver,
   ...episodeResolver
 }
 

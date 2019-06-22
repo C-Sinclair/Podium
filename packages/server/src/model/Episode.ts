@@ -1,10 +1,12 @@
-import { model, Model, Schema } from 'mongoose'
+import { model, Model, Schema, Types } from 'mongoose'
 import { IEpisode } from '../schema/Schema'
-import { Pod } from './Pod'
 
 const episodeSchema = new Schema({
   id: String,
-  pod: Pod,
+  podcast: {
+    ref: 'Podcast',
+    type: Types.ObjectId
+  },
   file: String,
   image: String,
   created: Date,

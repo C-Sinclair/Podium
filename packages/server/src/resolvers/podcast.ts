@@ -1,5 +1,5 @@
-import { IUser, IPod } from '../schema/Schema'
-import { Pod } from '../model/Pod'
+import { IUser, IPodcast } from '../schema/Schema'
+import { Podcast } from '../model/Podcast'
 
 interface CreatePodArgs {
   user: IUser
@@ -16,26 +16,26 @@ interface UpdatePodArgs {
 }
 
 const resolvers = {
-  createPod: (args: CreatePodArgs) => {
+  createPodcast: (args: CreatePodArgs) => {
     // save the rss/image to their s3 bucket
     const { user, name, rss, image } = args
-    const pod = new Pod({
+    const podcast = new Podcast({
       user,
       name,
       rss,
       image,
       created: new Date()
     })
-    return pod
+    return podcast
       .save()
-      .then((result: IPod) => result)
+      .then((result: IPodcast) => result)
       .catch((err: Error) => {
         throw err
       })
   },
-  updatePod: (args: UpdatePodArgs) => {
-    Pod.findOne({ id: args.id }).then((pod: IPod) => {
-      return pod.update({
+  updatePodcast: (args: UpdatePodArgs) => {
+    Podcast.findOne({ id: args.id }).then((podcast: IPodcast) => {
+      return podcast.update({
         name: args.name,
         rss: args.rss,
         image: args.image,
