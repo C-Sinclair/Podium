@@ -1,30 +1,21 @@
 import 'dotenv/config'
 import * as Mongoose from 'mongoose'
 import * as express from 'express'
-import { GraphQLSchema } from 'graphql'
 import * as expressgraphql from 'express-graphql'
-import { RootQuery, RootMutation } from './schema/schema'
+import { schema } from './schema/Schema'
+import resolvers from './resolvers'
 
 const { MONGO_USER, MONGO_PASSWORD, MONGO_PATH } = process.env
-const MONGO_URI = `mongodb+srv://${MONGO_USER}:${MONGO_PASSWORD}${MONGO_PATH}/test?retryWrites=true&w=majority`
-
-const schema = new GraphQLSchema({
-  query: RootQuery,
-  mutation: RootMutation
-})
+const MONGO_URI = `mongodb+srv://${MONGO_USER}:${MONGO_PASSWORD}${MONGO_PATH}/podium`
+const PORT = process.env.PORT || 3000
 
 function main() {
-  const db = Mongoose.connect(MONGO_URI, {
-    useNewUrlParser: true
-  })
   const App: express.Application = express()
 
   App.use('/data', (req: express.Request, res: express.Response) => {
     expressgraphql({
       schema,
-      context: {
-        db
-      },
+      rootValue: resolvers,
       graphiql: true
     })(req, res)
   })
@@ -32,6 +23,17 @@ function main() {
   App.listen(3000, () => {
     console.log('Server running')
   })
+
+  Mongoose.connect(MONGO_URI, {
+    useNewUrlParser: true
+  })
+    .then(() => {
+      console.log('Connected to MongoDB')
+      App.listen(PORT, () => {
+        console.log(`Listening on port ${PORT}`)
+      })
+    })
+    .catch(err => console.error(err))
 }
 
 main()
