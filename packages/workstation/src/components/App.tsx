@@ -1,36 +1,34 @@
 import React, { FunctionComponent, useState } from 'react'
 import Header from './Header'
+import Side from './Side'
 import Mixer from './Mixer'
-import Sidebar from './Sidebar'
-import Plugins from './Plugins'
-import Workspace from './Workspace'
-import { AppProps } from '../types/props'
+import { AppProps, TrackProps } from '../types/props'
 
+// from window.location.href || new unique hash
 const getNewSession = () => 1
 
-const App: FunctionComponent<AppProps> = ({ 
+const App: FunctionComponent<AppProps> = ({
   user = {
-    name: "",
+    name: '',
     id: 0,
-    token: ""
+    token: ''
   },
-  sessionId = getNewSession() 
+  sessionId = getNewSession()
 }) => {
-  // load from sessionId
-  const [ name, setName ] = useState(user.name)
+  const [name, setName] = useState(user.name)
   const onNameChange = (name: string) => setName(name)
   const [ selected, onSelect ] = useState(0)
 
+  // get data on current session from sessionId
+
+  const tracks: TrackProps[] = []
+  const selectedTrack: TrackProps = null
+
   return (
     <main>
-      <Header 
-        name={name} 
-        onNameChange={onNameChange}/>
-      <Sidebar 
-        onSelect={onSelect} />
-      <Plugins />
-      <Workspace />
-      <Mixer />
+      <Header name={name} onNameChange={onNameChange} />
+      <Side open={true} track={selectedTrack} />
+      <Mixer tracks={tracks} />
     </main>
   )
 }
