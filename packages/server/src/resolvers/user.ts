@@ -1,4 +1,4 @@
-import User from '../model/User'
+import { User } from '../model/User'
 import * as bcrypt from 'bcryptjs'
 import * as jwt from 'jsonwebtoken'
 import { IUser } from '../schema/Schema'
@@ -23,7 +23,7 @@ const resolvers = {
         }
         return bcrypt.hash(args.password, 12)
       })
-      .then(hashedPassword => {
+      .then((hashedPassword: string) => {
         const user = new User({
           email: args.email,
           name: args.name,
@@ -31,14 +31,14 @@ const resolvers = {
         })
         return user
           .save()
-          .then(result => {
-            return { ...result._doc, _id: result.id, password: null }
+          .then((result: IUser) => {
+            return { ...result, _id: result.id, password: '' }
           })
-          .catch(err => {
+          .catch((err: Error) => {
             throw err
           })
       })
-      .catch(err => {
+      .catch((err: Error) => {
         throw err
       })
   },
