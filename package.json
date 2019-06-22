@@ -18,6 +18,10 @@
 	"scripts": {
 		"publish": "lerna run build && lerna publish",
 		"install": "lerna bootstrap",
-		"install:all": "./install_packages.sh"
+		"install:all": "./install_packages.sh",
+		"check:updates": "ncu"
+	},
+	"dependencies": {
+		"npm-check-updates": "^3.1.11"
 	}
 }

@@ -1,13 +1,14 @@
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm'
+import { User } from './User'
 
 @Entity()
-export class User {
+export class Project {
   @PrimaryGeneratedColumn()
   id: number
 
   @Column()
-  name: string
+  user: User
 
   @Column()
-  email: string
+  title: string
 }
