@@ -1,5 +1,13 @@
-import { Schema, Model, model, Types } from 'mongoose'
-import { IProject } from '../schema/Schema'
+import { Schema, Model, model, Types, Document } from 'mongoose'
+import { IUser } from './User'
+
+export interface IProject extends Document {
+  id: string
+  user: IUser
+  name: string
+  created: Date
+  updated: Date
+}
 
 const ProjectSchema = new Schema({
   id: String,

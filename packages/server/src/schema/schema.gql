@@ -1,0 +1,99 @@
+scalar Date
+
+type User {
+  _id: ID!
+  name: String!
+  email: String
+  password: String
+  created: Date
+}
+
+type Project {
+  _id: ID!
+  user: User!
+  name: String
+  created: Date
+  updated: Date
+}
+
+type Podcast {
+  _id: ID!
+  user: User!
+  rss: String
+  image: String
+  created: Date
+  updated: Date
+}
+
+type Episode {
+  _id: ID!
+  podcast: Podcast!
+  file: String
+  image: String
+  created: Date
+  updated: Date
+}
+
+type AuthData {
+  userId: ID!
+  token: String!
+  tokenExpiry: Int!
+}
+
+type Query {
+  episodes(podcastID: ID): [Episode]
+  episode(id: ID!): Episode
+
+  podcasts(userID: ID): [Podcast]
+  podcast(id: ID!): Podcast
+
+  projects(userID: ID): [Project]
+  project(id: ID!): Project
+
+  users: [User]
+  user(id: ID!): User
+  login(email: String!, password: String!): AuthData
+}
+
+input UserInput {
+  name: String
+  email: String
+  password: String
+}
+
+input ProjectInput {
+  userID: ID!
+  name: String
+}
+
+input PodcastInput {
+  userID: ID!
+  name: String!
+  rss: String!
+  image: String
+}
+
+input EpisodeInput {
+  podcastID: ID!
+  file: String
+  image: String
+}
+
+type Mutation {
+  createUser(input: UserInput): User
+  updateUser(input: UserInput): User
+
+  createProject(input: ProjectInput): Project
+  updateProject(input: ProjectInput): Project
+
+  createPodcast(input: PodcastInput): Podcast
+  updatePodcast(input: PodcastInput): Podcast
+
+  createEpisode(input: EpisodeInput): Episode
+  updateEpisode(input: EpisodeInput): Episode
+}
+
+schema {
+  query: Query
+  mutation: Mutation
+}

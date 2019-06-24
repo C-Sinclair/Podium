@@ -1,5 +1,6 @@
-import { IUser, IProject } from '../schema/Schema'
-import { Project } from '../model/Project'
+import { Project, IProject } from '../model/Project'
+import { IResolvers } from 'graphql-tools'
+import { IUser } from '../model/User'
 
 interface CreateProjectArgs {
   user: IUser
@@ -11,28 +12,30 @@ interface UpdateProjectArgs {
   name: string
 }
 
-const resolvers = {
-  createProject: (args: CreateProjectArgs) => {
-    const { user, name } = args
-    const project = new Project({
-      user,
-      name,
-      created: new Date()
-    })
-    return project
-      .save()
-      .then((result: IProject) => result)
-      .catch((err: Error) => {
-        throw err
+const resolvers: IResolvers = {
+  Mutation: {
+    createProject: (args: CreateProjectArgs) => {
+      const { user, name } = args
+      const project = new Project({
+        user,
+        name,
+        created: new Date()
       })
-  },
-  updateProject: (args: UpdateProjectArgs) => {
-    Project.findOne({ id: args.id }).then((project: IProject) => {
-      return project.update({
-        name: args.name,
-        updated: new Date()
+      return project
+        .save()
+        .then((result: IProject) => result)
+        .catch((err: Error) => {
+          throw err
+        })
+    },
+    updateProject: (args: UpdateProjectArgs) => {
+      Project.findOne({ id: args.id }).then((project: IProject) => {
+        return project.update({
+          name: args.name,
+          updated: new Date()
+        })
       })
-    })
+    }
   }
 }
 

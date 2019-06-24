@@ -1,13 +1,11 @@
 {
 	"extends": "../../tsconfig.json",
-   "compilerOptions": {
-      "lib": [
-         "es5",
-         "es6"
-      ],
-      "module": "commonjs",
+	"compilerOptions": {
+		"lib": ["es5", "es6"],
+		"module": "commonjs",
 		"outDir": "./dist",
-      "sourceMap": true
-   },
+		"sourceMap": true,
+		"allowSyntheticDefaultImports": true
+	},
 	"include": ["./src"]
 }

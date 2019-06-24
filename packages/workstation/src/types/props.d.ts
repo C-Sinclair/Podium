@@ -10,10 +10,6 @@ type HeaderProps = {
   onNameChange: (name: string) => void
 }
 
-enum SideOpen = {
-  
-}
-
 type SideProps = {
   open: Boolean
   track?: TrackProps

@@ -1,5 +1,14 @@
-import { Model, model, Schema, Types } from 'mongoose'
-import { IPodcast } from '../schema/Schema'
+import { Model, model, Schema, Types, Document } from 'mongoose'
+import { IUser } from './User'
+
+export interface IPodcast extends Document {
+  _id: string
+  user: IUser
+  rss: string
+  image: string
+  created: Date
+  updated: Date
+}
 
 const podcastSchema = new Schema({
   id: String,
