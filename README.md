@@ -21,3 +21,10 @@ The server everything will be served from
 
 A react native Android/iOS app for similar as the above but from mobile
 _Ideas_ - Could be a podcast play that allows you to play your own music as background track!!
+
+##### Starting the app
+
+Start the packager in one window
+`react-native start`
+Run the `adb` (emulator or device)
+`react-native run-android`
