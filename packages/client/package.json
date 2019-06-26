@@ -23,6 +23,7 @@
 		"autoprefixer": "^9.6.0",
 		"postcss": "^7.0.17",
 		"react": "^16.8.6",
+		"react-apollo-hooks": "^0.4.5",
 		"react-dom": "^16.8.6",
 		"react-icons": "^3.7.0",
 		"react-router-dom": "^5.0.1",

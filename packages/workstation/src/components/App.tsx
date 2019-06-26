@@ -1,8 +1,15 @@
 import React, { FunctionComponent, useState } from 'react'
+import ApolloClient from 'apollo-boost'
+import { ApolloProvider } from 'react-apollo-hooks'
 import Header from './Header'
 import Side from './Side'
 import Mixer from './Mixer'
 import { AppProps, TrackProps } from '../types/props'
+
+const client = new ApolloClient({
+  uri: 'localhost:3000/graphql',
+  resolvers: {}
+})
 
 // from window.location.href || new unique hash
 const getNewSession = () => 1
@@ -17,7 +24,7 @@ const App: FunctionComponent<AppProps> = ({
 }) => {
   const [name, setName] = useState(user.name)
   const onNameChange = (name: string) => setName(name)
-  const [ selected, onSelect ] = useState(0)
+  const [selected, onSelect] = useState(0)
 
   // get data on current session from sessionId
 
@@ -25,11 +32,13 @@ const App: FunctionComponent<AppProps> = ({
   const selectedTrack: TrackProps = null
 
   return (
-    <main>
-      <Header name={name} onNameChange={onNameChange} />
-      <Side open={true} track={selectedTrack} />
-      <Mixer tracks={tracks} />
-    </main>
+    <ApolloProvider client={client}>
+      <main>
+        <Header name={name} onNameChange={onNameChange} />
+        <Side open={true} track={selectedTrack} />
+        <Mixer tracks={tracks} />
+      </main>
+    </ApolloProvider>
   )
 }
 
