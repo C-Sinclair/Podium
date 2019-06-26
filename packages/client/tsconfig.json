@@ -1,7 +1,10 @@
 {
 	"extends": "../../tsconfig.json",
 	"compilerOptions": {
-		"outDir": "./dist"
+		"outDir": "./dist",
+		"noEmit": true,
+		"allowSyntheticDefaultImports": true
 	},
-	"include": ["./src"]
+	"include": ["./src"],
+	"files": ["./src/types/props.d.ts"]
 }
