@@ -18,19 +18,19 @@ defmodule PodiumWeb.UserLive.Index do
 
   defp apply_action(socket, :edit, %{"id" => id}) do
     socket
-    |> assign(:page_title, "Edit User")
+    |> assign(:page_title, "Edit username")
     |> assign(:user, Chatroom.get_user!(id))
   end
 
   defp apply_action(socket, :new, _params) do
     socket
-    |> assign(:page_title, "New User")
+    |> assign(:page_title, "Pick a username")
     |> assign(:user, %User{})
   end
 
   defp apply_action(socket, :index, _params) do
     socket
-    |> assign(:page_title, "Listing Users")
+    |> assign(:page_title, "Current Users")
     |> assign(:user, nil)
   end
 
