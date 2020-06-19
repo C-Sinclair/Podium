@@ -1,0 +1,18 @@
+<h1>Listing Users</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <%= live_modal @socket, PodiumWeb.UserLive.FormComponent,
+    id: @user.id || :new,
+    title: @page_title,
+    action: @live_action,
+    user: @user,
+    return_to: Routes.user_index_path(@socket, :index) %>
+<% end %>
+
+<div id='users' phx-update="prepend">
+  <%= for user <- @users do %>
+    <%= live_component @socket, PodiumWeb.UserLive.UserComponent, id: user.id, user: user %>
+  <% end %>
+</div>
+
+<span><%= live_patch "New User", to: Routes.user_index_path(@socket, :new) %></span>
