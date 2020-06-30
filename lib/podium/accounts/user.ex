@@ -1,4 +1,4 @@
-defmodule Podium.Chatroom.User do
+defmodule Podium.Accounts.User do
   use Ecto.Schema
   import Ecto.Changeset
 
@@ -13,6 +13,5 @@ defmodule Podium.Chatroom.User do
     user
     |> cast(attrs, [:username])
     |> validate_required([:username])
-    |> validate_length(:username, min: 2, max: 23)
   end
 end

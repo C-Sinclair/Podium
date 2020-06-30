@@ -8,8 +8,6 @@ defmodule PodiumWeb.Router do
     plug :put_root_layout, {PodiumWeb.LayoutView, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
-
-    plug Auth
     plug :put_user_token
   end
 
@@ -20,14 +18,36 @@ defmodule PodiumWeb.Router do
   scope "/", PodiumWeb do
     pipe_through :browser
 
-    live "/", PageLive, :index
+    live "/", RoomLive.Index, :index
+  end
 
-    live "/users", UserLive.Index, :index
-    live "/users/new", UserLive.Index, :new
-    live "/users/:id/edit", UserLive.Index, :edit
+  scope "/rooms", PodiumWeb do
+    pipe_through :browser
 
-    live "/users/:id", UserLive.Show, :show
-    live "/users/:id/show/edit", UserLive.Show, :edit
+    live "/", RoomLive.Index, :index
+    live "/new", RoomLive.Index, :new
+    live "/:id/edit", RoomLive.Index, :edit
+
+    live "/:id", RoomLive.Show, :show
+    live "/:id/show/edit", RoomLive.Show, :edit
+  end
+
+  scope "/users", PodiumWeb do
+    pipe_through :browser
+
+    live "/", UserLive.Index, :index
+    live "/new", UserLive.Index, :new
+    live "/:id/edit", UserLive.Index, :edit
+
+    live "/:id", UserLive.Show, :show
+    live "/:id/show/edit", UserLive.Show, :edit
+  end
+
+  scope "/videos", PodiumWeb do
+    pipe_through :browser
+
+    live "/", VideoLive.Index, :index
+    live "/:id", VideoLive.Show, :show
   end
 
   defp put_user_token(conn, _) do
@@ -36,15 +56,6 @@ defmodule PodiumWeb.Router do
       assign(conn, :user_token, token)
     else
       conn
-    end
-  end
-
-  if Mix.env() in [:dev, :test] do
-    import Phoenix.LiveDashboard.Router
-
-    scope "/" do
-      pipe_through :browser
-      live_dashboard "/dashboard", metrics: PodiumWeb.Telemetry
     end
   end
 end

@@ -5,6 +5,7 @@ defmodule PodiumWeb.UserSocket do
   def connect(_params, socket, _connect_info) do
     {:ok, socket}
   end
+
   @impl true
   def connect(%{"token" => token}, socket) do
     # max_age: 1209600 is equivalent to two weeks in seconds
@@ -15,7 +16,6 @@ defmodule PodiumWeb.UserSocket do
         :error
     end
   end
-
 
   @impl true
   def id(_socket), do: nil

@@ -1,11 +1,11 @@
 defmodule PodiumWeb.UserLive.FormComponent do
   use PodiumWeb, :live_component
 
-  alias Podium.Chatroom
+  alias Podium.Accounts
 
   @impl true
   def update(%{user: user} = assigns, socket) do
-    changeset = Chatroom.change_user(user)
+    changeset = Accounts.change_user(user)
 
     {:ok,
      socket
@@ -17,7 +17,7 @@ defmodule PodiumWeb.UserLive.FormComponent do
   def handle_event("validate", %{"user" => user_params}, socket) do
     changeset =
       socket.assigns.user
-      |> Chatroom.change_user(user_params)
+      |> Accounts.change_user(user_params)
       |> Map.put(:action, :validate)
 
     {:noreply, assign(socket, :changeset, changeset)}
@@ -28,7 +28,7 @@ defmodule PodiumWeb.UserLive.FormComponent do
   end
 
   defp save_user(socket, :edit, user_params) do
-    case Chatroom.update_user(socket.assigns.user, user_params) do
+    case Accounts.update_user(socket.assigns.user, user_params) do
       {:ok, _user} ->
         {:noreply,
          socket
@@ -41,7 +41,7 @@ defmodule PodiumWeb.UserLive.FormComponent do
   end
 
   defp save_user(socket, :new, user_params) do
-    case Chatroom.create_user(user_params) do
+    case Accounts.create_user(user_params) do
       {:ok, _user} ->
         {:noreply,
          socket

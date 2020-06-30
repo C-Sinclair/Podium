@@ -1,7 +1,7 @@
-defmodule PodiumWeb.UserLive.Show do
+defmodule PodiumWeb.RoomLive.Show do
   use PodiumWeb, :live_view
 
-  alias Podium.Accounts
+  alias Podium.Chat
 
   @impl true
   def mount(_params, _session, socket) do
@@ -13,9 +13,9 @@ defmodule PodiumWeb.UserLive.Show do
     {:noreply,
      socket
      |> assign(:page_title, page_title(socket.assigns.live_action))
-     |> assign(:user, Accounts.get_user!(id))}
+     |> assign(:room, Chat.get_room!(id))}
   end
 
-  defp page_title(:show), do: "Show User"
-  defp page_title(:edit), do: "Edit User"
+  defp page_title(:show), do: "Show Room"
+  defp page_title(:edit), do: "Edit Room"
 end

@@ -3,14 +3,14 @@ defmodule PodiumWeb.UserLiveTest do
 
   import Phoenix.LiveViewTest
 
-  alias Podium.Chatroom
+  alias Podium.Accounts
 
   @create_attrs %{username: "some username"}
   @update_attrs %{username: "some updated username"}
   @invalid_attrs %{username: nil}
 
   defp fixture(:user) do
-    {:ok, user} = Chatroom.create_user(@create_attrs)
+    {:ok, user} = Accounts.create_user(@create_attrs)
     user
   end
 

@@ -1,12 +1,12 @@
-defmodule Podium.Chatroom do
+defmodule Podium.Accounts do
   @moduledoc """
-  The Chatroom context.
+  The Accounts context.
   """
 
   import Ecto.Query, warn: false
   alias Podium.Repo
 
-  alias Podium.Chatroom.User
+  alias Podium.Accounts.User
 
   @doc """
   Returns the list of users.
@@ -18,7 +18,7 @@ defmodule Podium.Chatroom do
 
   """
   def list_users do
-    Repo.all(from u in User, order_by: [desc: u.id])
+    Repo.all(User)
   end
 
   @doc """
@@ -53,7 +53,6 @@ defmodule Podium.Chatroom do
     %User{}
     |> User.changeset(attrs)
     |> Repo.insert()
-    |> broadcast(:user_created)
   end
 
   @doc """
@@ -72,7 +71,6 @@ defmodule Podium.Chatroom do
     user
     |> User.changeset(attrs)
     |> Repo.update()
-    |> broadcast(:user_updated)
   end
 
   @doc """
@@ -103,15 +101,4 @@ defmodule Podium.Chatroom do
   def change_user(%User{} = user, attrs \\ %{}) do
     User.changeset(user, attrs)
   end
-
-  def subscribe do
-    Phoenix.PubSub.subscribe(Podium.PubSub, "users")
-  end
-
-  defp broadcast({:error, _reason} = error, _event), do: error
-  defp broadcast({:ok, user}, event) do
-    Phoenix.PubSub.broadcast(Podium.PubSub, "users", {event, user})
-    {:ok, user}
-  end
-
 end
