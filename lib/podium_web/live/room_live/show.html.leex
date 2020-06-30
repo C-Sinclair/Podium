@@ -1,5 +1,3 @@
-<h1><%= @room.name %></h1>
-
 <%= if @live_action in [:edit] do %>
   <%= live_modal @socket, PodiumWeb.RoomLive.FormComponent,
     id: @room.id,
@@ -9,5 +7,29 @@
     return_to: Routes.room_show_path(@socket, :show, @room) %>
 <% end %>
 
-<span><%= live_patch "Edit", to: Routes.room_show_path(@socket, :edit, @room), class: "button" %></span>
-<span><%= live_redirect "Back", to: Routes.room_index_path(@socket, :index) %></span>
+<section id="room-root">
+  <header>
+    <span><%= live_redirect "Back", to: Routes.room_index_path(@socket, :index) %></span>
+    <span><%= live_patch "Change name", to: Routes.room_show_path(@socket, :edit, @room), class: "button" %></span>
+
+    <h1><%= @room.name %></h1>
+  </header>
+
+  <div>
+    <div>
+      <label>Local</label>
+      <video id="local-stream" autoplay muted>
+    </div>
+
+    <div>
+      <label>Remote</label>
+      <video id="remote-stream" autoplay>
+    </div>
+  </div>
+
+  <div>
+    <button id="connect">Connect</button>
+    <button id="call">Call</button>
+    <button id="disconnect">Disconnect</button>
+  </div>
+</section>

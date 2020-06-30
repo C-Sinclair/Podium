@@ -1,6 +1,8 @@
 defmodule PodiumWeb.UserSocket do
   use Phoenix.Socket
 
+  channel "video:*", PodiumWeb.VideoChannel
+
   @impl true
   def connect(_params, socket, _connect_info) do
     {:ok, socket}
