@@ -7,16 +7,11 @@ import {LiveSocket} from "phoenix_live_view"
 const csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content")
 const liveSocket = new LiveSocket("/live", Socket, {params: {_csrf_token: csrfToken}})
 
-// Show progress bar on live navigation and form submits
 window.addEventListener("phx:page-loading-start", info => NProgress.start())
 window.addEventListener("phx:page-loading-stop", info => NProgress.done())
 
-// connect if there are any LiveViews on the page
 liveSocket.connect()
 
-// expose liveSocket on window for web console debug logs and latency simulation:
-// >> liveSocket.enableDebug()
-// >> liveSocket.enableLatencySim(1000)
 window.liveSocket = liveSocket
 
 const socket = new Socket('/socket', { token: window.userToken })
@@ -41,16 +36,6 @@ function pushPeerMessage(type, content) {
   });
 }
 
-const mediaConstraints = {
-  audio: true,
-  video: {
-    width: 4096,
-    height: 2160
-  }
-};
-
-const devices = navigator.mediaDevices;
-
 const connectButton = document.getElementById('connect');
 const callButton = document.getElementById('call');
 const disconnectButton = document.getElementById('disconnect');
@@ -58,10 +43,11 @@ const disconnectButton = document.getElementById('disconnect');
 const remoteVideo = document.getElementById('remote-stream');
 const localVideo = document.getElementById('local-stream');
 
-let peerConnection;
 let remoteStream = new MediaStream();
 
 setVideoStream(remoteVideo, remoteStream);
+
+let peerConnection;
 
 disconnectButton.disabled = true;
 callButton.disabled = true;
@@ -78,7 +64,7 @@ async function connect() {
     const localStream = await navigator.mediaDevices.getUserMedia({
       audio: true,
       video: true,
-    });
+    })
     console.log('localStream', localStream)
     setVideoStream(localVideo, localStream);
     peerConnection = createPeerConnection(localStream);
@@ -88,16 +74,15 @@ async function connect() {
 }
 
 async function call() {
-  let offer = await peerConnection.createOffer();
+  const offer = await peerConnection.createOffer();
   peerConnection.setLocalDescription(offer);
   pushPeerMessage('video-offer', offer);
 }
 
 function createPeerConnection(stream) {
   console.log('createPeerConnection')
-  let pc = new RTCPeerConnection({
+  const pc = new RTCPeerConnection({
     iceServers: [
-      // Information about ICE servers - Use your own!
       {
         urls: 'stun:stun.stunprotocol.org',
       },
@@ -186,7 +171,9 @@ function setVideoStream(videoElement, stream) {
 function unsetVideoStream(videoElement) {
   console.log('unsetVideoStream', videoElement)
   if (videoElement.srcObject) {
-    videoElement.srcObject.getTracks().forEach(track => track.stop());
+    videoElement.srcObject
+      .getTracks()
+      .forEach(track => track.stop());
   }
   videoElement.removeAttribute('src');
   videoElement.removeAttribute('srcObject');

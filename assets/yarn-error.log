@@ -1,0 +1,54 @@
+Arguments: 
+  /home/conor/.nvm/versions/node/v12.16.3/bin/node /usr/bin/yarn
+
+PATH: 
+  /home/conor/.nvm/versions/node/v12.16.3/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/conor/.local/bin/statusbar:/home/conor/.local/bin/cron:/home/conor/.local/bin/i3cmds:/home/conor/.local/bin/:/home/conor/scripts:/home/conor/bin:/usr/local/go/bin:/home/conor/.local/share/go/bin
+
+Yarn version: 
+  1.22.4
+
+Node version: 
+  12.16.3
+
+Platform: 
+  linux x64
+
+Trace: 
+  SyntaxError: /home/conor/projects/podium/assets/package.json: Unexpected token } in JSON at position 293
+      at JSON.parse (<anonymous>)
+      at /usr/lib/node_modules/yarn/lib/cli.js:1625:59
+      at Generator.next (<anonymous>)
+      at step (/usr/lib/node_modules/yarn/lib/cli.js:310:30)
+      at /usr/lib/node_modules/yarn/lib/cli.js:321:13
+
+npm manifest: 
+  {
+    "repository": {},
+    "description": " ",
+    "license": "MIT",
+    "scripts": {
+      "deploy": "rollup --config",
+      "watch": "rollup --config --watch"
+    },
+    "dependencies": {
+      "nprogress": "^0.2.0",
+      "phoenix": "file:../deps/phoenix",
+      "phoenix_html": "file:../deps/phoenix_html",
+    },
+    "devDependencies": {
+      "@rollup/plugin-commonjs": "^11.0.0",
+      "@rollup/plugin-node-resolve": "^7.0.0",
+      "rollup": "^1.20.0",
+      "rollup-plugin-postcss": "^2.0.5",
+      "rollup-plugin-svelte": "^5.0.3",
+      "rollup-plugin-terser": "^5.1.2",
+      "svelte": "^3.0.0",
+      "svelte-preprocess": "^3.3.1"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
