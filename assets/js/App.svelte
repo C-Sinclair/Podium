@@ -1,23 +1,16 @@
 <script>
-  import { onDestroy } from 'svelte'
   import { Router, Route } from 'svelte-routing'
   import { Home, Chat, Admin, Login } from './pages'
   import { Header } from './components'
-  import { User } from './state'
+  import { user } from './state'
 
   export let url = ""
-
-  let user
-  const user$ = User.subscribe(v => user = v)
-  onDestroy(user$)
-
-  $: loggedIn = !!user
 </script>
 
 <Router {url}>
   <main>
     <Header />
-    {#if loggedIn}
+    {#if $user}
       <Route path="/c/:code" let:params>
         <Chat code="{params.code}" />
       </Route>

@@ -6,7 +6,8 @@ defmodule PodiumWeb.RoomChannel do
   end
 
   def handle_in("create", %{"body" => body}, socket) do
-    broadcast_from! socket, "create", %{room: body}
+    broadcast socket, "create", %{room: body}
     {:noreply, socket}
   end
+
 end

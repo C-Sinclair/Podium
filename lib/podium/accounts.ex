@@ -133,4 +133,8 @@ defmodule Podium.Accounts do
   def update_token(user) do
     update_user(user, %{"access_token" => generate_token()})
   end
+
+  def check_token(token) do
+    Repo.get_by(User, access_token: token)
+  end
 end

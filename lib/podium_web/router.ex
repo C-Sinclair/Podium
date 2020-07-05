@@ -14,6 +14,12 @@ defmodule PodiumWeb.Router do
     plug :accepts, ["json"]
   end
 
+  scope "/api", PodiumWeb do
+    pipe_through :api
+
+    get "/user/:user_id/image", UserController, :image
+  end
+
   scope "/", PodiumWeb do
     pipe_through :browser
 

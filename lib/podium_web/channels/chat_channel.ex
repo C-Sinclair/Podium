@@ -6,7 +6,7 @@ defmodule PodiumWeb.ChatChannel do
   end
 
   def handle_in("message", %{"body" => body}, socket) do
-    broadcast_from! socket, "message", %{message: body}
+    broadcast socket, "message", %{message: body}
     {:noreply, socket}
   end
 end
