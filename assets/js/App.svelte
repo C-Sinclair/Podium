@@ -1,26 +1,17 @@
 <script>
-  import Header from './components/Header.svelte'
+  import { Router, Route } from 'svelte-routing'
+  import { Home, Chat, Admin } from './pages'
+  import { Header } from './components'
 
-  export let name
-  export let channel
-
-  channel.on('message', console.log)
-
-  function sendMessage() {
-    channel.push('message', {
-      body: 'text to send'
-    })
-  }
+  export let url = ""
 </script>
 
-<style>
-  h1 { color: teal; }
-</style>
+<Router {url}>
+  <main>
+    <Header />
 
-<main>
-  <Header></Header>
-  <h1>Hello {name}!</h1>
-
-  <button on:click={sendMessage}>Send a message</button>
-</main>
-
+    <Route path="/c/:code" component="{Chat}"/>
+    <Route path="/admin" component="{Admin}" />
+    <Route path="/"><Home /></Route>
+  </main>
+</Router>

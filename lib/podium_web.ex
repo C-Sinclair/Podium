@@ -1,28 +1,12 @@
 defmodule PodiumWeb do
-  @moduledoc """
-  The entrypoint for defining your web interface, such
-  as controllers, views, channels and so on.
-
-  This can be used in your application as:
-
-      use PodiumWeb, :controller
-      use PodiumWeb, :view
-
-  The definitions below will be executed for every view,
-  controller, etc, so keep them short and clean, focused
-  on imports, uses and aliases.
-
-  Do NOT define functions inside the quoted expressions
-  below. Instead, define any helper function in modules
-  and import those modules here.
-  """
+  @moduledoc false
 
   def controller do
     quote do
       use Phoenix.Controller, namespace: PodiumWeb
 
       import Plug.Conn
-      import PodiumWeb.Gettext
+      # import PodiumWeb.Gettext
       alias PodiumWeb.Router.Helpers, as: Routes
     end
   end
@@ -42,30 +26,12 @@ defmodule PodiumWeb do
     end
   end
 
-  def live_view do
-    quote do
-      use Phoenix.LiveView,
-        layout: {PodiumWeb.LayoutView, "live.html"}
-
-      unquote(view_helpers())
-    end
-  end
-
-  def live_component do
-    quote do
-      use Phoenix.LiveComponent
-
-      unquote(view_helpers())
-    end
-  end
-
   def router do
     quote do
       use Phoenix.Router
 
       import Plug.Conn
       import Phoenix.Controller
-      import Phoenix.LiveView.Router
     end
   end
 
@@ -81,15 +47,10 @@ defmodule PodiumWeb do
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
 
-      # Import LiveView helpers (live_render, live_component, live_patch, etc)
-      import Phoenix.LiveView.Helpers
-      import PodiumWeb.LiveHelpers
-
       # Import basic rendering functionality (render, render_layout, etc)
       import Phoenix.View
 
-      import PodiumWeb.ErrorHelpers
-      import PodiumWeb.Gettext
+      # import PodiumWeb.Gettext
       alias PodiumWeb.Router.Helpers, as: Routes
     end
   end
