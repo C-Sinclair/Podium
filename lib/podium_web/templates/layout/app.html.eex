@@ -1,4 +1,3 @@
 <script src="//cdn.temasys.com.sg/adapterjs/0.10.x/adapter.debug.js"></script>
-<script>window.userToken = "<%= assigns[:user_token] %>";</script>
 
 <%= @inner_content %>
