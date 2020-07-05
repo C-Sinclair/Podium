@@ -9,8 +9,9 @@
 <Router {url}>
   <main>
     <Header />
-
-    <Route path="/c/:code" component="{Chat}"/>
+    <Route path="/c/:code" let:params>
+      <Chat code="{params.code}" />
+    </Route>
     <Route path="/admin" component="{Admin}" />
     <Route path="/"><Home /></Route>
   </main>

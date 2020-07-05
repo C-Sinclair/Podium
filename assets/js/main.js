@@ -1,18 +1,10 @@
 import 'phoenix_html'
-import phx from "phoenix"
 import App from './App.svelte'
-import NProgress from "nprogress"
-import '../css/app.scss'
+import '../css/app.sass'
 
-window.addEventListener("phx:page-loading-start", NProgress.start)
-window.addEventListener("phx:page-loading-stop", NProgress.done)
-
-const socket = new phx.Socket('/socket', { token: window.userToken })
-socket.connect()
+window.addEventListener("phx:page-loading-start", () => console.log('phx:page-loading-start'))
+window.addEventListener("phx:page-loading-stop", () => console.log('phx:page-loading-stop'))
 
 new App({
-    target: document.getElementById('svelte-content'),
-    props: {
-        socket
-    },
+    target: document.getElementById('svelte-content')
 })
