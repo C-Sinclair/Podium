@@ -4,8 +4,8 @@ defmodule Podium.Accounts do
   """
 
   import Ecto.Query, warn: false
+  alias Ecto.Changeset
   alias Podium.Repo
-
   alias Podium.Accounts.User
 
   @doc """
@@ -52,6 +52,8 @@ defmodule Podium.Accounts do
   def create_user(attrs \\ %{}) do
     %User{}
     |> User.changeset(attrs)
+    |> Changeset.put_change(:password_hash, Bcrypt.hash_pwd_salt(attrs["password"]))
+    |> Changeset.put_change(:access_token, generate_token())
     |> Repo.insert()
   end
 
@@ -70,6 +72,12 @@ defmodule Podium.Accounts do
   def update_user(%User{} = user, attrs) do
     user
     |> User.changeset(attrs)
+    |> Repo.update()
+  end
+  def update_password(%User{} = user, password) do
+    user
+    |> User.changeset(%{})
+    |> Changeset.put_change(:password_hash, Bcrypt.hash_pwd_salt(password))
     |> Repo.update()
   end
 
@@ -100,5 +108,29 @@ defmodule Podium.Accounts do
   """
   def change_user(%User{} = user, attrs \\ %{}) do
     User.changeset(user, attrs)
+  end
+
+  @doc """
+  Checks that a username password combo matches a record in the database
+  """
+  def login(username, password) do
+    case User
+    |> Repo.get_by!(username: username)
+    |> Bcrypt.check_pass(password) do
+      {:ok, user} ->
+        update_token(user)
+      {:error, reason} ->
+        {:error, reason}
+    end
+  end
+
+  defp generate_token(length \\ 16) do
+    :crypto.strong_rand_bytes(length)
+    |> Base.encode64
+    |> binary_part(0, length)
+  end
+
+  def update_token(user) do
+    update_user(user, %{"access_token" => generate_token()})
   end
 end

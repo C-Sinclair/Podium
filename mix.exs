@@ -40,7 +40,8 @@ defmodule Podium.MixProject do
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
-      {:phoenix_gon, "~> 0.4.0"}
+      {:phoenix_gon, "~> 0.4.0"},
+      {:bcrypt_elixir, "~> 2.2.0"}
     ]
   end
 
