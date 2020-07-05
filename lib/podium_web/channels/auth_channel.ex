@@ -1,7 +1,7 @@
 defmodule PodiumWeb.AuthChannel do
   use Phoenix.Channel
 
-  def join("auth:*", _message, socket) do
+  def join("auth:init", _message, socket) do
     {:ok, socket}
   end
 

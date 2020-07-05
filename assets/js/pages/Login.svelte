@@ -4,7 +4,10 @@
     let username
     let password    
 
-    const submit = () => User.signin({ username, password })
+    const submit = e => {
+        e.preventDefault()
+        User.signin({ username, password })
+    }
 </script>
 
 <form>

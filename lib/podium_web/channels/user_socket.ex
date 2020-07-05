@@ -1,6 +1,7 @@
 defmodule PodiumWeb.UserSocket do
   use Phoenix.Socket
 
+  channel "auth:*", PodiumWeb.AuthChannel
   channel "room:*", PodiumWeb.RoomChannel
   channel "chat:*", PodiumWeb.ChatChannel
 
